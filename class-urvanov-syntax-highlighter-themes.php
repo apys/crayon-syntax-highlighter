@@ -9,7 +9,7 @@ class Urvanov_Syntax_Highlighter_Themes extends Urvanov_Syntax_Highlighter_User_
 
     const DEFAULT_THEME = 'classic';
     const DEFAULT_THEME_NAME = 'Classic';
-    const CSS_PREFIX = '.crayon-theme-';
+    const CSS_PREFIX = '.urvanov-syntax-highlighter-theme-';
 
     private $printed_themes = array();
 

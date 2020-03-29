@@ -136,10 +136,18 @@ class Urvanov_Syntax_Highlighter_Theme_Editor_Save {
 		$id = stripslashes(sanitize_text_field($_POST['id']));
 		$name = stripslashes(sanitize_text_field($_POST['name']));
 		$css = stripslashes(sanitize_text_field($_POST['css']));
-		$change_settings = UrvanovSyntaxHighlighterUtil::set_default(sanitize_text_field($_POST['change_settings']), TRUE);
-		$allow_edit = UrvanovSyntaxHighlighterUtil::set_default(sanitize_text_field($_POST['allow_edit']), TRUE);
-		$allow_edit_stock_theme = UrvanovSyntaxHighlighterUtil::set_default(sanitize_text_field($_POST['allow_edit_stock_theme']), URVANOV_SYNTAX_HIGHLIGHTER_DEBUG);
-		$delete = UrvanovSyntaxHighlighterUtil::set_default(sanitize_text_field($_POST['delete']), TRUE);
+		if (array_key_exists('change_settings', $_POST) ) {
+			$change_settings = UrvanovSyntaxHighlighterUtil::set_default(sanitize_text_field($_POST['change_settings']), TRUE);
+		}
+		if (array_key_exists('allow_edit', $_POST)) {
+			$allow_edit = UrvanovSyntaxHighlighterUtil::set_default(sanitize_text_field($_POST['allow_edit']), TRUE);
+		}
+		if (array_key_exists('allow_edit_stock_theme', $_POST)) {
+			$allow_edit_stock_theme = UrvanovSyntaxHighlighterUtil::set_default(sanitize_text_field($_POST['allow_edit_stock_theme']), URVANOV_SYNTAX_HIGHLIGHTER_DEBUG);
+		}
+		if (array_key_exists('delete', $_POST)) {
+			$delete = UrvanovSyntaxHighlighterUtil::set_default(sanitize_text_field($_POST['delete']), TRUE);
+		}
 	}
 }
 
@@ -663,7 +671,7 @@ class Urvanov_Syntax_Highlighter_Theme_Editor_WP {
 
     public static function save() {
     	$save_args = new Urvanov_Syntax_Highlighter_Theme_Editor_Save;
-    	$save_args.initialize_from_post();
+    	$save_args->initialize_from_post();
     }
     
     /**
